@@ -86,6 +86,7 @@ pub fn sys_mmap(_start: usize, _len: usize, _port: usize) -> isize{
     let p = (_port << 1) | 16;
     let permission = MapPermission::from_bits(p as u8).unwrap();
     mmap(VirtAddr(_start) , VirtAddr(_end), permission);
+    
     0
 }
 
