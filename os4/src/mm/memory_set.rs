@@ -236,7 +236,7 @@ impl MemorySet {
         let mut index = 0;
         let mut flag = false;
         for i in 0..l{
-            if self.areas[i].vpn_range.get_start()==_start && self.areas[i].vpn_range.get_end()== _end{
+            if self.areas[i].vpn_range.get_start().0==_start.0 && self.areas[i].vpn_range.get_end().0== _end.0{
                 index = i;
                 flag = true;
                 break;
@@ -244,7 +244,7 @@ impl MemorySet {
         }
         if flag{
             self.areas.remove(index);
-            for i in _start.0..=_end.0{
+            for i in _start.0.._end.0{
                 self.page_table.unmap(VirtPageNum(i));
             }
             return 0;
